@@ -40,6 +40,9 @@ EXPOSE 7860
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
+# Chunk size for processing - lower values use less VRAM (default: 4096)
+# Adjust based on your GPU: 11GB GPU can try 6144, 8GB GPU use 4096, 6GB GPU use 2048
+ENV TRIPOSR_CHUNK_SIZE=4096
 
 # Default command runs the Gradio app
 # Can be overridden to run inference with: docker run ... python run.py examples/chair.png

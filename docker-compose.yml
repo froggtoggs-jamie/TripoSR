@@ -14,6 +14,9 @@ services:
       - ./examples:/app/examples
     environment:
       - PYTHONUNBUFFERED=1
+      # Adjust chunk size based on your GPU VRAM:
+      # 11GB+ GPU: 6144-8192, 8GB GPU: 4096, 6GB GPU: 2048-3072
+      - TRIPOSR_CHUNK_SIZE=4096
     # GPU support configuration
     deploy:
       resources:

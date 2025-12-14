@@ -28,7 +28,9 @@ model = TSR.from_pretrained(
 )
 
 # adjust the chunk size to balance between speed and memory usage
-model.renderer.set_chunk_size(8192)
+# Lower chunk size = less VRAM usage but slower processing
+chunk_size = int(os.environ.get("TRIPOSR_CHUNK_SIZE", "4096"))
+model.renderer.set_chunk_size(chunk_size)
 model.to(device)
 
 rembg_session = rembg.new_session()
