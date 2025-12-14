@@ -1,5 +1,5 @@
-# Use official PyTorch image with CUDA support
-FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime
+# Use official PyTorch image with CUDA support (devel for build tools)
+FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-devel
 
 # Set working directory
 WORKDIR /app
@@ -8,9 +8,10 @@ WORKDIR /app
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
 
-# Install system dependencies
+# Install system dependencies and build tools
 RUN apt-get update && apt-get install -y \
     git \
+    build-essential \
     libgl1-mesa-glx \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
