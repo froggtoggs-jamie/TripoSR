@@ -43,4 +43,4 @@ ENV PYTHONUNBUFFERED=1
 
 # Default command runs the Gradio app
 # Can be overridden to run inference with: docker run ... python run.py examples/chair.png
-CMD ["python", "gradio_app.py", "--server-name", "0.0.0.0", "--server-port", "7860"]
+CMD ["python", "gradio_app.py", "--listen", "--port", "7860"]
