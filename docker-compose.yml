@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  triposr:
+    build: .
+    image: triposr:latest
+    container_name: triposr
+    ports:
+      - "7860:7860"
+    volumes:
+      # Mount output directory to persist generated 3D models
+      - ./output:/app/output
+      # Optionally mount custom images directory
+      - ./examples:/app/examples
+    environment:
+      - PYTHONUNBUFFERED=1
+    # GPU support configuration
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    # For older docker-compose versions, use runtime instead:
+    # runtime: nvidia
+    shm_size: '2gb'
+    stdin_open: true
+    tty: true
