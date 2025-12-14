@@ -19,6 +19,9 @@ RUN apt-get update && apt-get install -y \
 # Upgrade setuptools as required by the project
 RUN pip install --no-cache-dir --upgrade setuptools
 
+# Install onnxruntime first (required by rembg)
+RUN pip install --no-cache-dir onnxruntime
+
 # Copy requirements file
 COPY requirements.txt .
 
